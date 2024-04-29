@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 //import pokemon from "./Pokemon.json";
-import PropTypes from 'prop-types';
+
 
 
 const PokemonRow = ({pokemon, onSelect}) => (
@@ -35,14 +35,7 @@ const PokemonInfo = ({name, base}) => (
   </div>
 )
 
-/*PokemonRow.PropTypes = {
-  pokemon: PropTypes.shape({
-    name: PropTypes.shape({
-      english: PropTypes.string,
-    }),
-    type: PropTypes.arrayOf(PropTypes.string),
-  }),
-};*/
+
 
 function App() {
   const [filter, setFilter] = React.useState("");
