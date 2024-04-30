@@ -5,33 +5,51 @@ import './App.css';
 
 
 const PokemonRow = ({pokemon, onSelect}) => (
-  <tr >
-  <td>{pokemon.name.english}</td>
-  <td>{pokemon.type.join(", ")}</td>
-  <td>
-    <button
-      onClick={() => onSelect(pokemon)}
-      >Select</button>
+  <p onClick={() => onSelect(pokemon)} className='PokemonItems'>
+  <p>{pokemon.name.english}</p>
+ 
+  
 
-  </td>
-</tr>
+        <img 
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} 
+          alt={pokemon.name.english} 
+        />
+
+      
+</p>
+
 );
 //    <h1>{name.english}</h1>
-const PokemonInfo = ({name, base}) => (
-  <div className='test'>
+const PokemonInfo = ({id, name, base}) => (
+  <div className='PokemonInfo'>
 
 
-    <table className='test2'>
-    <h3>{name.english}</h3>
+    <div>
+    <h2>{name.english}</h2>
+    </div>
+    <div className='PokemonImage'>
+          <img 
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} 
+          alt={name.english}
+
+        />
+      </div>
+
+    <div className='InfoInner'>
       {
         Object.keys(base).map((key) =>(
-          <tr key={key}>
-            <td>{key}</td>
-            <td>{base[key]}</td>
-          </tr>
+          <div key={key} >
+            <p>{key}</p>
+            <p>{base[key]}</p>
+
+          </div>
+          
         ))
       }
-    </table>
+
+      </div>
+
+
   </div>
 )
 
@@ -55,24 +73,25 @@ function App() {
     <div
     > 
       <div className='header'>
-        <h1>Pokemon Search</h1>
+        {/*<h1>Pokemon Search</h1>*/}
+        <img 
+        src= "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi.svg?sanitize=true" 
+        width={"20%"}
+        height={"50%"}
+        
+        />
+
+
+
         <input
           value={filter}
           onChange={(event) => setFilter(event.target.value)}
           />
       </div>
 
-      <div className='pokemonContainer'>
-      <table >
-        <thead >
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-
-        <tbody >
- 
+      <div className='PokemonContainer'>
+    
+        <div className='Pokemons'>
           {pokemon
           .filter((pokemon) => pokemon.name.english.toLowerCase().includes(filter.toLowerCase()))
           .map(pokemon => (
@@ -86,15 +105,16 @@ function App() {
 
           ))}
    
-        </tbody>
+        
+        </div>
 
-
-        </table>
+        
         {selectedItem && <PokemonInfo {... selectedItem} />}
-      
 
+
+        </div>
       </div>
-    </div>
+    
   );
 }
 
