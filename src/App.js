@@ -1,4 +1,5 @@
 import React from 'react';
+import useSound from 'use-sound';
 import './App.css';
 import { clear } from '@testing-library/user-event/dist/clear';
 //import pokemon from "./Pokemon.json";
@@ -7,13 +8,15 @@ import { clear } from '@testing-library/user-event/dist/clear';
 
 const PokemonRow = ({pokemon, onSelect}) => (
   <p onClick={() => onSelect(pokemon)} className='PokemonItems'>
-  <p>{pokemon.name.english}</p>
+  <h4>{pokemon.name.english}</h4>
+  <p>{pokemon.name.japanese}</p>
  
   
 
         <img 
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} 
-          alt={pokemon.name.english} 
+          alt={pokemon.name.english}
+          
         />
 
       
@@ -21,20 +24,28 @@ const PokemonRow = ({pokemon, onSelect}) => (
 
 );
 //    <h1>{name.english}</h1>
-const PokemonInfo = ({id, name, base}) => (
+const PokemonInfo = ({id, name, base}) => {
+  const [playSound] = useSound(`https://raw.githubusercontent.com/PokeAPI/cries/8584048df8f55ee1c436da23b378316e9d416a9b/cries/pokemon/latest/${id}.ogg`);
+
+
+  return (
   <div className='PokemonInfo'>
 
 
     <div>
     <h2>{name.english}</h2>
+    <h4>{name.japanese}</h4>
     </div>
     <div className='PokemonImage'>
           <img 
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} 
           alt={name.english}
-
+          
         />
+        
       </div>
+      <button onClick={playSound}>Play Sound</button>
+
 
     <div className='InfoInner'>
       {
@@ -52,7 +63,8 @@ const PokemonInfo = ({id, name, base}) => (
 
 
   </div>
-)
+  );
+}
 
 
 

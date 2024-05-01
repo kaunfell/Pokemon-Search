@@ -69,7 +69,8 @@ input {
 
     grid-column-gap: 10px; */
   
-    color: rgb(70, 40, 40);
+    color: rgb(128, 62, 62);
+
     background-color: antiquewhite;
     border-radius: 5px;
 
@@ -87,6 +88,7 @@ input {
   margin: 0px auto;
   
   justify-content: center;
+  
   
 }
 
@@ -133,9 +135,15 @@ input {
 .PokemonImage {
 
   width: 25%;
-  height: 20%;
+  height: 15%;
   
   margin-bottom: 5px;
+}
+
+
+
+.PokemonInfo button {
+  margin: 2%;
 }
 
 
@@ -144,11 +152,7 @@ input {
 
 
 
-
-
-
-
-@media screen and (max-width: 550px){
+@media screen and (max-width: 450px){
   .PokemonContainer {
     width: 95%;
     font-size: .9rem;
@@ -197,6 +201,12 @@ input {
   .InputArea {
     
     
+  }
+
+  .PokemonImage {
+
+    width: 50%;
+
   }
 }
 
