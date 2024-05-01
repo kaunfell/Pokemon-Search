@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { clear } from '@testing-library/user-event/dist/clear';
 //import pokemon from "./Pokemon.json";
 
 
@@ -76,17 +77,23 @@ function App() {
         {/*<h1>Pokemon Search</h1>*/}
         <img 
         src= "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi.svg?sanitize=true" 
-        width={"20%"}
-        height={"50%"}
+        width={"400px"}
+        height={"120px"}
+        
         
         />
 
 
-
+        <div className='InputArea'>
         <input
           value={filter}
           onChange={(event) => setFilter(event.target.value)}
           />
+          <button
+          onClick={() => setFilter("")}
+          >X</button>
+          </div>
+
       </div>
 
       <div className='PokemonContainer'>
