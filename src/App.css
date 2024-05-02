@@ -1,9 +1,9 @@
 body{
-  background-color: rgb(244, 253, 253);
+  background-color: var(--background);
 }
 
 .header{
-  background-color: rgb(216, 50, 21);
+  background-color: var(--header);
   width: 100%;
   height: 220px;
 
@@ -21,6 +21,7 @@ body{
 
   position: fixed;
   top: 0px;
+
 }
 
 .header img {
@@ -69,44 +70,54 @@ input {
 
     grid-column-gap: 10px; */
   
-    color: rgb(128, 62, 62);
+    color: var(--color);
 
-    background-color: antiquewhite;
+    background-color: var(--pokemonContainer);
     border-radius: 5px;
 
 }
 
 .Pokemons{
-  background-color: rgba(167, 233, 255, 0.616);
+  background-color: var(--pokemonTables);
   border-radius: 5px;
   width: 45%;
 
   display: grid;
   grid-template-columns:45% 45%;
-  grid-column-gap: 10px;
+  grid-column-gap: 25px;
  
   margin: 0px auto;
   
   justify-content: center;
   
-  
+  border: var(--border);
 }
 
 .PokemonItems {
-  background-color: rgb(255, 181, 111);
+  background-color: var(--buttons);
+  /*background-color: rgb(88, 176, 235);*/
   text-align: center;
 
   border-radius: 5px;
+  
 }
+.IdNum {
+  font-size: small;
+  text-align:left;
+  padding-left: 10px;
 
+
+}
 
 /*Info*/
 
 
 .PokemonInfo{
-  background-color: rgba(167, 233, 255, 0.616);
+  
+  background-color: var(--pokemonTables);
+  
   width: 45%;
-  height: 65vh;
+  height: 68vh;
   text-align: center;
   border-radius: 5px;
   
@@ -117,15 +128,29 @@ input {
   align-items: center;
   top: 30%;
   position: sticky;
+
+  border: var(--border);
+ /* background-image: url("./img/pokedexscreen.png");
+  background-repeat: no-repeat;
+  background-size: 80% 80%;*/
+}
+.Container {
+  width: 100%;
+  height: 65%;
 }
 
-
 .InfoInner {
-  background-color: rgb(255, 181, 111);
+  background-color: var(--buttons);
+  /*background-color: rgb(88, 176, 235);*/
   width: 75%;
-  display: grid;
-  grid-template-columns: 40% 40%;
-  gap: 5px;
+  height: 30%;
+
+  /*display: grid;
+  grid-template-columns: 80% 20%;
+  gap: 5px;*/
+  display: grid; 
+  font-size: small;
+  grid-template-columns: 20% 20% 20%;
 
   justify-content: center;
   text-align: left;
@@ -133,22 +158,125 @@ input {
 }
 
 .PokemonImage {
+  position: relative;
+  width: 75%;
+  height: 90%;
+  border: var();
 
-  width: 25%;
-  height: 15%;
+  margin: 15px auto;
   
-  margin-bottom: 5px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  align-items:center;
+  
+
+  background-image: url("./img/pokedexscreen.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
 }
 
 
 
 .PokemonInfo button {
-  margin: 2%;
+  display:block;
+  position: absolute;
+  bottom: 10px;
+  left: 17%;
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px rgba(80, 6, 6, 0.521);
+  background-color: rgb(235, 27, 27);
+  color: rgb(185, 177, 177);
+}
+
+
+.X {
+  
+  position: absolute;
+  right: 30px;
+  top: 32px;
+  width: 130px;
+  height: 130px;
+  background-image: url("./img/plus.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top;
+
+}
+.X p{
+  justify-self: center;
+  align-items: center;
+  margin: 40% 12px  0px 12px;
+  color: rgb(185, 177, 177);
+  background-color: #111010;
+  border-top: .7px solid rgb(41, 40, 40);
+  border-left: .7px solid rgb(41, 40, 40);
+}
+.X:active{
+  transform: translate(0px, 2px)
+}
+
+
+
+/*Themes*/
+
+:root {
+  --background: rgb(244, 253, 253);
+  --header: rgb(216, 50, 21);
+  --pokemonContainer: antiquewhite;
+  --pokemonTables: rgba(167, 233, 255, 0.616);
+  --buttons: rgb(255, 181, 111);
+  --color: rgb(128, 62, 62);
+  --border: 5px solid rgb(193, 227, 247);
+
+  /*--iconic-background: rgb(228, 151, 151);
+  --iconic-header: rgb(216, 50, 21);
+  --iconic-buttons: blue;
+
+  --dark-background: #201717;
+  --dark-header: #2b2929;
+  --dark-buttons: #6d6868;*/
+}
+
+.normal {
+  --background: rgb(244, 253, 253);
+  --header: rgb(216, 50, 21);
+  --pokemonContainer: antiquewhite;
+  --pokemonTables: rgba(167, 233, 255, 0.616);
+  --buttons: rgb(255, 181, 111);
+  --color: rgb(128, 62, 62);
+
+}
+
+
+.iconic {
+  --background: rgb(244, 253, 253);
+  --header: rgb(216, 50, 21);
+  --pokemonContainer: rgb(216, 50, 21);
+  --pokemonTables: rgb(231, 220, 220);
+  --buttons: rgb(88, 176, 235);
+  --border: 5px solid rgb(165, 159, 159);
+}
+
+.dark {
+  --background: #333;
+  --header: #1f1d1d;
+  --pokemonContainer: rgb(136, 130, 121);
+  --pokemonTables: rgba(23, 25, 26, 0.616);
+  --buttons: rgb(34, 33, 32);
+  --color: rgb(136, 133, 133);
+  --border: 5px solid rgb(88, 88, 88);
 }
 
 
 
 
+/*Media Queries*/
 
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import useSound from 'use-sound';
 import './App.css';
 import { clear } from '@testing-library/user-event/dist/clear';
@@ -8,6 +8,7 @@ import { clear } from '@testing-library/user-event/dist/clear';
 
 const PokemonRow = ({pokemon, onSelect}) => (
   <p onClick={() => onSelect(pokemon)} className='PokemonItems'>
+  <p className='IdNum'>#{pokemon.id}</p>
   <h4>{pokemon.name.english}</h4>
   <p>{pokemon.name.japanese}</p>
  
@@ -32,26 +33,34 @@ const PokemonInfo = ({id, name, base}) => {
   <div className='PokemonInfo'>
 
 
-    <div>
+
+    <div className='Container'>
+      
+
+    <div className='PokemonImage'>
+    <div >
     <h2>{name.english}</h2>
     <h4>{name.japanese}</h4>
     </div>
-    <div className='PokemonImage'>
+
           <img 
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} 
           alt={name.english}
           
         />
-        
-      </div>
-      <button onClick={playSound}>Play Sound</button>
 
+
+
+      <button  onClick={playSound}>Play Sound</button>
+      </div>
+
+      </div>
 
     <div className='InfoInner'>
       {
         Object.keys(base).map((key) =>(
           <div key={key} >
-            <p>{key}</p>
+            <h4>{key}</h4>
             <p>{base[key]}</p>
 
           </div>
@@ -69,10 +78,25 @@ const PokemonInfo = ({id, name, base}) => {
 
 
 function App() {
-  const [filter, setFilter] = React.useState("");
-  const [pokemon, setPokemon] = React.useState([]);
-  const [selectedItem, setSelectedItem] = React.useState(null);
+  const [filter, setFilter] = useState("");
+  const [pokemon, setPokemon] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   console.log(selectedItem)
+  const [theme, setTheme] = useState("normal");
+
+  const toggleTheme = () => {
+    if (theme === 'normal'){
+      setTheme('iconic');
+    }else if(theme === "iconic"){
+      setTheme('dark')
+    }else{
+      setTheme('normal')
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
 
 
   //async, this is like getting stuff from other website etc. The pokemon.json is in other file to represent that
@@ -91,20 +115,29 @@ function App() {
         src= "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi.svg?sanitize=true" 
         width={"400px"}
         height={"120px"}
-        
-        
         />
 
 
         <div className='InputArea'>
         <input
           value={filter}
-          onChange={(event) => setFilter(event.target.value)}
+          onChange={(event) => setFilter(event.target.value) 
+          }
+          
           />
           <button
           onClick={() => setFilter("")}
           >X</button>
           </div>
+
+        <div className={`App ${theme}`} >
+        <div className='X' onClick={toggleTheme}>
+          <p>
+          Toggle Theme
+          </p>
+        </div>
+        
+        </div>
 
       </div>
 
@@ -112,7 +145,11 @@ function App() {
     
         <div className='Pokemons'>
           {pokemon
-          .filter((pokemon) => pokemon.name.english.toLowerCase().includes(filter.toLowerCase()))
+          .filter((pokemon) =>
+          pokemon.name.english.toLowerCase().includes(filter.toLowerCase()) ||
+          pokemon.name.japanese.includes(filter) ||
+          pokemon.id.toString().includes(filter)
+          )
           .map(pokemon => (
 
 
